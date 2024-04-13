@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, red, yellow);
+    }
+
+    h1 {
+      color: #000;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    div {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
+    }
+
+    h3 {
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  #mensajeEmergente { display: none;
+                      position: fixed;
+                      top: 50%;   
+                      left: 50%;
+                      transform: translate(-50%, -50%); 
+                      background-color: white;
+                      padding: 20px; 
+                      border: 2px solid black;
+                      z-index: 9999;
+                      max-width: 80%; 
+                      max-height: 80%;
+                      overflow: auto;
+  }
+ /* Estilos para el campo de búsqueda */
+  #searchInput {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 300px; /* Ajusta el ancho según sea necesario */
+    margin: 20px auto; /* Centra el campo de búsqueda */
+    display: block;
+    background-color: white; /* Fondo blanco */
+    font-size: 16px;
+  }
+
+  /* Estilos para el texto del campo de búsqueda */
+  #searchInput::placeholder {
+    color: #999; /* Color del texto del placeholder */
+  }
+
+  /* Estilos para cuando el campo de búsqueda tiene el foco */
+  #searchInput:focus {
+    border-color: #66afe9; /* Cambia el color del borde al tener el foco */
+    box-shadow: 0 0 5px #66afe9; /* Añade una sombra al tener el foco */
+  }
+
+  /* Estilos para cuando el usuario está escribiendo en el campo de búsqueda */
+  #searchInput:active, #searchInput:hover {
+    border-color: #66afe9; /* Cambia el color del borde al pasar el cursor */
+  }
+
+  </style>
+  <title>AsojanitoP41 Catálogo</title>
+</head>
+<body>
+  <h1>Bienvenido a nuestro estudio de tattoos AsojanitoP41</h1>
+  <input type="text" id="searchInput" oninput="buscarTatuajes()" placeholder="Buscar tatuajes...">
+
+  <h2>Catalagos de Tatuajes:</h2>
+  <div id="tattoo-container">
+     <div class="tattoo">
+    <h3>Años de Nacimiento</h3>
+    <p>Precio: $1000</p>
+    <p>Descripción:Fecha de los años de nacimiento.</p>
+    <img src="https://i.imgur.com/kIN0nFI.jpeg" alt="Años de Nacimiento">
+  </div>
+    
+  <div class="tattoo">
+    <h3>Años de Nacimiento</h3>
+    <p><b>Precio: $1000</b></p>
+    <p><b>Descripción: Fecha de los años de nacimiento</b></p>
+    <img src="https://i.imgur.com/kmrssIP.jpeg" alt="Años de Nacimiento">
+  </div>
+  
+ <div class="tattoo">
+    <h3>Tatuaje de Rosa</h3>
+    <p><b>Precio: $1600</b></p>
+    <p><b>Descripción: Una delicada rosa .</b></p>
+    <img src="https://i.imgur.com/5BjXsbx.jpeg" alt="Tatuaje de Rosa">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $850</p>
+    <p><b>Descripción: </b>Un Tattos minimalistas.</p>
+    <img src="https://i.imgur.com/kkCzXxV.jpeg" alt="Tatuajes">
+  </div>
+
+  <div class="tattoo">
+    <h3>Tatuajes de pluma </h3>
+    <p><b>Precio:</b> $950</p>
+    <p><b>Descripción:</b>Una hermosa pluma.</p>
+    <img src="https://i.imgur.com/T0LLWT7.jpeg" alt="Tatuajes">
+  </div>
+
+   <div class="tattoo">
+    <h3>Tatuajes mariposa con flores</h3>
+    <p><b>Precio:</b> $1700</p>
+    <p><b>Descripción:</b>Delicada mariposa con flores con un bello acabado en los dedos como puedes ver.</p>
+    <img src="https://i.imgur.com/8ufS92B.jpeg" alt="Tatuajes">
+  </div>
+  
+   <div class="tattoo">
+    <h3>Tatuajes de mariposa </h3>
+    <p><b>Precio:</b> $1450</p>
+    <p><b>Descripción:</b> Mariposa con flores .</p>
+    <img src="https://i.imgur.com/15VRjSd.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $1600</p>
+    <p><b>Descripción:</b> Linda rosa con dos cintillos como decorado.</p>
+    <img src="https://i.imgur.com/XioNEhe.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $2000</p>
+    <p><b>Descripción:</b> Dos hermosos Girasoles.</p>
+    <img src="https://i.imgur.com/rG2GNGn.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $1500</p>
+    <p><b>Descripción:</b> Lindo Girasol .</p>
+    <img src="https://i.imgur.com/dSbpp4D.jpeg" alt="Tatuajes">
+  </div>
+  
+        <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $1750</p>
+    <p><b>Descripción:</b>tatuaje de una mariposa con un rombo detrás decorado con unas hojas difuminadas .</p>
+    <img src="https://i.imgur.com/O1pSve0.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3600</p>
+    <p><b>Descripción:</b> Una manga corta de flores y una mariposa con unos colgantes.</p>
+    <img src="https://i.imgur.com/37Gj4F6.jpeg" alt="Tatuajes">
+  </div>
+  
+        <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $2700</p>
+    <p><b>Descripción:</b> Un hermoso diseño de dos flores de loto con una mariposa.</p>
+    <img src="https://i.imgur.com/EfYd3iH.jpeg" alt="Tatuajes">
+  </div> 
+  
+   <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3500</p>
+    <p><b>Descripción:</b> Hermoso diseño de un sol con diseños a sus lados.</p>
+    <img src="https://i.imgur.com/AikREtI.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3600</p>
+    <p><b>Descripción:</b> Manda pequeña con un girasol, una flor de loto y varias mariposas.</p>
+    <img src="https://i.imgur.com/Ca5o9eN.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3750</p>
+    <p><b>Descripción:</b> Hermosa manga pequeña con variedad de flores.</p>
+    <img src="https://i.imgur.com/Cvv7wIg.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3500</p>
+    <p><b>Descripción:</b> Diseño de una serpiente entre dos marpacíficos.</p>
+    <img src="https://i.imgur.com/SjIwQVm.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $2500</p>
+    <p><b>Descripción:</b>Hermoso diseño de dos manos y un nombre debajo.</p>
+    <img src="https://i.imgur.com/TYGr4yv.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4000</p>
+    <p>Descripción: Linda manga larga de dos flores de loto y una hermosa luna.</p>
+    <img src="https://i.imgur.com/TEVf2vW.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5000</p>
+    <p>>b>Descripción:</b> Hermosa manga larga de girasoles con mariposas.</p>
+    <img src="https://i.imgur.com/e8mwwv5.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes halas</h3>
+    <p><b>Precio:</b> $5000</p>
+    <p><b>Descripción:</b> Diseño de una hermosa ala.</p>
+    <img src="https://i.imgur.com/LYpc7pv.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga</h3>
+    <p><b>Precio:</b> $5500</p>
+    <p><b>Descripción:</b> Hermoso diseño de manga varias flores.</p>
+    <img src="https://i.imgur.com/aiOQBF6.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes halas</h3>
+    <p><b>Precio:</b>5300$</p>
+    <p><b>Descripción:</b> Hermoso diseño de ala con aro egipcio y iniciales.</p>
+    <img src="https://i.imgur.com/OpiQFcV.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes mangas </h3>
+    <p><b>Precio:</b> $4000</p>
+    <p><b>Descripción:</b> Hermosa manga larga de flores.</p>
+    <img src="https://i.imgur.com/ih8itRy.jpeg" alt="Tatuajes">
+  </div>
+  
+<div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $6500</p>
+    <p>Descripción: Hermoso diseño de una linda samurai.</p>
+    <img src="https://i.imgur.com/kMptFVr.jpeg" alt="Tatuajes">
+</div>
+  
+ <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5700</p>
+    <p><b>Descripción:</b> Diseño de manga larga de rosas con mariposas y mandala.</p>
+    <img src="https://i.imgur.com/VuHf33Q.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4600</p>
+    <p><b>Descripción:</b> Mangas largas de rosas con lurio.</p>
+    <img src="https://i.imgur.com/mByR7Hr.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3500</p>
+    <p>Descripción: Hermosa leona con una flor grande y los ojos en color.</p>
+    <img src="https://i.imgur.com/pSuUvUy.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4700</p>
+    <p>Descripción: Manga larga con flor de loto grande y lirios con mandalas.</p>
+    <img src="https://i.imgur.com/TOwFhdO.jpeg" alt="Tatuajes">
+  </div>
+  
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4600</p>
+    <p><b>Descripción:</b>Hermoso elefante en blanco y negro decorado con flores.</p>
+    <img src="https://i.imgur.com/xDwSCln.jpeg" alt="Tatuajes">
+  </div>
+  
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5600</p>
+    <p><b>Descripción:</b> Linda manga de flores.</p>
+    <img src="https://i.imgur.com/gumc4gW.jpeg" alt="Tatuajes">
+  </div>
+
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4700</p>
+    <p><b>Descripción:</b> Diseño de una flor de loto grande como ven en la foto.</p>
+    <img src="https://i.imgur.com/DqJSJCz.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="https://i.imgur.com/rssCRSp.jpeg" alt="Tatuajes">
+  </div>
+   
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $       </p>
+    <p><b>Descripción: </b>           .</p>
+    <img src="https://i.imgur.com/6BXCFxT.jpeg  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/4reSnTf.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/FGkoB0S.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/Ykj4kug.jpeg " alt="Tatuajes">
+  </div>
+   
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/pBLxvha.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/cLtbC4L.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/Im56gzE.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/Ss3vWqU.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/rkX6bZz.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/rGJETQC.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/79k7Yys.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/n0BlWw1.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="https://i.imgur.com/JjUrLX2.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/waH92E4.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/Y6c9YZc.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/UP6rrJz.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/DCt6vhw.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/hnGiVvc.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/pxp6cC6.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/IZn49FT.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/bnYOh1N.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/c0kkST1.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/KleVG7K.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/8Huci4e.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src=" https://i.imgur.com/zkdqKGj.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $       </p>
+    <p>Descripción:            .</p>
+    <img src="  " alt="Tatuajes">
+  </div>
+  <div id="mensajeEmergente"></div>
+  
+</div>
+    <footer>
+    <p>Teléfono: <a href="https://wa.me/5355549887">+53 55549887</a></p>
+    <p>Canal de WhatsApp: <a href="https://whatsapp.com/channel/0029VaRIBbL2P59sOSPNbg3G">Enlace a tu canal</a></p>
+    <p><a href="https://api.whatsapp.com/send?phone=5355549887">Enviar mensaje por WhatsApp</a></p>
+</footer>
+    <script>
+    // Función para mostrar un mensaje emergente
+    function mostrarMensaje(mensaje) {
+      const mensajeEmergente = document.getElementById('mensajeEmergente');
+      mensajeEmergente.textContent = mensaje;
+      mensajeEmergente.style.display = 'block';
+    }
+
+    // Función para enviar un mensaje de reserva a WhatsApp
+    function reservarTurno(nombreTatuaje) {
+      const mensajeReserva = "Hola, me gustaría reservar un turno para hacerme el tatuaje '" + nombreTatuaje + "'. ¿Podrías ayudarme con eso?";
+      const urlWhatsApp = "https://wa.me/5355549887/?text=" + encodeURIComponent(mensajeReserva);
+      window.open(urlWhatsApp, '_blank');
+    }
+    // Función buscar tatuajes
+  function buscarTatuajes() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toUpperCase();
+    const tattoos = document.querySelectorAll('.tattoo');
+
+    tattoos.forEach(tattoo => {
+      const titulo = tattoo.querySelector('h3');
+      const precioTexto = tattoo.querySelector('p:nth-child(2)').textContent;
+      const descripcion = tattoo.querySelector('p:nth-child(3)');
+      const texto = titulo.textContent.toUpperCase() + descripcion.textContent.toUpperCase();
+
+      // Convertir el precio a un número o a un rango de números si hay un guion
+      let precios = [];
+      if (precioTexto.includes('-')) {
+        precios = precioTexto.split('-').map(p => parseInt(p.trim()));
+      } else {
+        precios = [parseInt(precioTexto)];
+      }
+
+      // Comprobar si alguno de los precios coincide con el filtro
+      let precioCoincide = false;
+      precios.forEach(precio => {
+        if (precio.toString().indexOf(filter) > -1) {
+          precioCoincide = true;
+        }
+      });
+
+      if (texto.indexOf(filter) > -1 || precioCoincide) {
+        tattoo.style.display = '';
+      } else {
+        tattoo.style.display = 'none';
+      }
+    });
+  }
+  </script> 
+ </body>
+</html>
