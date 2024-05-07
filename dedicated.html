@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mensaje Especial</title>
+<style>
+  body {
+    background-color: black;
+    color: red;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .hearts {
+    animation: heartbeat 1s infinite;
+  }
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .message {
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  .special-text {
+    display: none;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div>
+  <h1>De mi para ti</h1>
+  <p class="message" onclick="toggleSpecialText()">Ver texto especial</p>
+  <div class="special-text">
+    <p>Eres la luz que ilumina mis días, la melodía que cautiva mi corazón. Tu presencia es como un bálsamo para mi alma, llenándome de una calidez que no puedo explicar.</p>
+    <p>Anhelo ser quien seque tus lágrimas y reemplace la tristeza por una sonrisa radiante. Quiero ser el refugio donde puedas encontrar consuelo y la fuerza para seguir adelante.</p>
+    <p>Juntos, podremos pintar un lienzo de felicidad, donde tus risas sean la sinfonía que guíe nuestros pasos. Déjame ser el antídoto para tus penas, el bálsamo que cure las heridas de tu corazón.</p>
+    <p>Permíteme acompañarte en este viaje, y juntos construir un futuro lleno de momentos mágicos, donde tus ojos brillen con la intensidad de mil estrellas.</p>
+  </div>
+  <div class="hearts">❤️❤️❤️</div>
+</div>
+<script>
+  function toggleSpecialText() {
+    var specialText = document.querySelector('.special-text');
+    if (specialText.style.display === 'none') {
+      specialText.style.display = 'block';
+    } else {
+      specialText.style.display = 'none';
+    }
+  }
+</script>
+</body>
+</html>
