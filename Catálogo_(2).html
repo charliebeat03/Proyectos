@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, red, yellow);
+    }
+
+    h1 {
+      color: #000;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    div {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      padding: 20px;
+    }
+
+    h3 {
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  #mensajeEmergente { display: none;
+                      position: fixed;
+                      top: 50%;   
+                      left: 50%;
+                      transform: translate(-50%, -50%); 
+                      background-color: white;
+                      padding: 20px; 
+                      border: 2px solid black;
+                      z-index: 9999;
+                      max-width: 80%; 
+                      max-height: 80%;
+                      overflow: auto;
+  }
+ /* Estilos para el campo de búsqueda */
+  #searchInput {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 300px; /* Ajusta el ancho según sea necesario */
+    margin: 20px auto; /* Centra el campo de búsqueda */
+    display: block;
+    background-color: white; /* Fondo blanco */
+    font-size: 16px;
+  }
+
+  /* Estilos para el texto del campo de búsqueda */
+  #searchInput::placeholder {
+    color: #999; /* Color del texto del placeholder */
+  }
+
+  /* Estilos para cuando el campo de búsqueda tiene el foco */
+  #searchInput:focus {
+    border-color: #66afe9; /* Cambia el color del borde al tener el foco */
+    box-shadow: 0 0 5px #66afe9; /* Añade una sombra al tener el foco */
+  }
+
+  /* Estilos para cuando el usuario está escribiendo en el campo de búsqueda */
+  #searchInput:active, #searchInput:hover {
+    border-color: #66afe9; /* Cambia el color del borde al pasar el cursor */
+  }
+
+  </style>
+  <title>AsojanitoP41 Catálogo</title>
+</head>
+<body>
+  <h1>Bienvenido a nuestro estudio de tattoos AsojanitoP41</h1>
+  <input type="text" id="searchInput" oninput="buscarTatuajes()" placeholder="Buscar tatuajes...">
+
+  <h2>Catalagos de Tatuajes:</h2>
+  <div id="tattoo-container">
+     <div class="tattoo">
+    <h3>Años de Nacimiento</h3>
+    <p>Precio: $1600</p>
+    <p>Descripción:Fecha de los años de nacimiento.</p>
+    <img src="https://i.imgur.com/kIN0nFI.jpeg" alt="Años de Nacimiento">
+  </div>
+    
+  <div class="tattoo">
+    <h3>Años de Nacimiento</h3>
+    <p><b>Precio: $1600</b></p>
+    <p><b>Descripción: Fecha de los años de nacimiento</b></p>
+    <img src="https://i.imgur.com/kmrssIP.jpeg" alt="Años de Nacimiento">
+  </div>
+  
+ <div class="tattoo">
+    <h3>Tatuaje de Rosa</h3>
+    <p><b>Precio: $2500</b></p>
+    <p><b>Descripción: Una delicada rosa .</b></p>
+    <img src="https://i.imgur.com/5BjXsbx.jpeg" alt="Tatuaje de Rosa">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $1300</p>
+    <p><b>Descripción: </b>Un Tattos minimalistas.</p>
+    <img src="https://i.imgur.com/kkCzXxV.jpeg" alt="Tatuajes">
+  </div>
+
+  <div class="tattoo">
+    <h3>Tatuajes de pluma </h3>
+    <p><b>Precio:</b> $1500</p>
+    <p><b>Descripción:</b>Una hermosa pluma.</p>
+    <img src="https://i.imgur.com/T0LLWT7.jpeg" alt="Tatuajes">
+  </div>
+
+   <div class="tattoo">
+    <h3>Tatuajes mariposa con flores</h3>
+    <p><b>Precio:</b> $2700</p>
+    <p><b>Descripción:</b>Delicada mariposa con flores con un bello acabado en los dedos como puedes ver.</p>
+    <img src="https://i.imgur.com/8ufS92B.jpeg" alt="Tatuajes">
+  </div>
+  
+   <div class="tattoo">
+    <h3>Tatuajes de mariposa </h3>
+    <p><b>Precio:</b> $2450</p>
+    <p><b>Descripción:</b> Mariposa con flores .</p>
+    <img src="https://i.imgur.com/15VRjSd.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $2600</p>
+    <p><b>Descripción:</b> Linda rosa con dos cintillos como decorado.</p>
+    <img src="https://i.imgur.com/XioNEhe.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $2000</p>
+    <p><b>Descripción:</b> Dos hermosos Girasoles.</p>
+    <img src="https://i.imgur.com/rG2GNGn.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $1700</p>
+    <p><b>Descripción:</b> Lindo Girasol .</p>
+    <img src="https://i.imgur.com/dSbpp4D.jpeg" alt="Tatuajes">
+  </div>
+  
+        <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $1950</p>
+    <p><b>Descripción:</b>tatuaje de una mariposa con un rombo detrás decorado con unas hojas difuminadas .</p>
+    <img src="https://i.imgur.com/O1pSve0.jpeg" alt="Tatuajes">
+  </div>
+  
+         <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5600</p>
+    <p><b>Descripción:</b> Una manga corta de flores y una mariposa con unos colgantes.</p>
+    <img src="https://i.imgur.com/37Gj4F6.jpeg" alt="Tatuajes">
+  </div>
+  
+        <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3700</p>
+    <p><b>Descripción:</b> Un hermoso diseño de dos flores de loto con una mariposa.</p>
+    <img src="https://i.imgur.com/EfYd3iH.jpeg" alt="Tatuajes">
+  </div> 
+  
+   <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4500</p>
+    <p><b>Descripción:</b> Hermoso diseño de un sol con diseños a sus lados.</p>
+    <img src="https://i.imgur.com/AikREtI.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4600</p>
+    <p><b>Descripción:</b> Manda pequeña con un girasol, una flor de loto y varias mariposas.</p>
+    <img src="https://i.imgur.com/Ca5o9eN.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4750</p>
+    <p><b>Descripción:</b> Hermosa manga pequeña con variedad de flores.</p>
+    <img src="https://i.imgur.com/Cvv7wIg.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3700</p>
+    <p><b>Descripción:</b> Diseño de una serpiente entre dos marpacíficos.</p>
+    <img src="https://i.imgur.com/SjIwQVm.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3500</p>
+    <p><b>Descripción:</b>Hermoso diseño de dos manos y un nombre debajo.</p>
+    <img src="https://i.imgur.com/TYGr4yv.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5600</p>
+    <p>Descripción: Linda manga larga de dos flores de loto y una hermosa luna.</p>
+    <img src="https://i.imgur.com/TEVf2vW.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5700</p>
+    <p>>b>Descripción:</b> Hermosa manga larga de girasoles con mariposas.</p>
+    <img src="https://i.imgur.com/e8mwwv5.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes halas</h3>
+    <p><b>Precio:</b> $5900</p>
+    <p><b>Descripción:</b> Diseño de una hermosa ala.</p>
+    <img src="https://i.imgur.com/LYpc7pv.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga</h3>
+    <p><b>Precio:</b> $5500</p>
+    <p><b>Descripción:</b> Hermoso diseño de manga varias flores.</p>
+    <img src="https://i.imgur.com/aiOQBF6.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes halas</h3>
+    <p><b>Precio:</b>5300$</p>
+    <p><b>Descripción:</b> Hermoso diseño de ala con aro egipcio y iniciales.</p>
+    <img src="https://i.imgur.com/OpiQFcV.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes mangas </h3>
+    <p><b>Precio:</b> $4000</p>
+    <p><b>Descripción:</b> Hermosa manga larga de flores.</p>
+    <img src="https://i.imgur.com/ih8itRy.jpeg" alt="Tatuajes">
+  </div>
+  
+<div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $6500</p>
+    <p>Descripción: Hermoso diseño de una linda samurai.</p>
+    <img src="https://i.imgur.com/kMptFVr.jpeg" alt="Tatuajes">
+</div>
+  
+ <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5700</p>
+    <p><b>Descripción:</b> Diseño de manga larga de rosas con mariposas y mandala.</p>
+    <img src="https://i.imgur.com/VuHf33Q.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4600</p>
+    <p><b>Descripción:</b> Mangas largas de rosas con lurio.</p>
+    <img src="https://i.imgur.com/mByR7Hr.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $3500</p>
+    <p>Descripción: Hermosa leona con una flor grande y los ojos en color.</p>
+    <img src="https://i.imgur.com/pSuUvUy.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4700</p>
+    <p>Descripción: Manga larga con flor de loto grande y lirios con mandalas.</p>
+    <img src="https://i.imgur.com/TOwFhdO.jpeg" alt="Tatuajes">
+  </div>
+  
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4600</p>
+    <p><b>Descripción:</b>Hermoso elefante en blanco y negro decorado con flores.</p>
+    <img src="https://i.imgur.com/xDwSCln.jpeg" alt="Tatuajes">
+  </div>
+  
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $5600</p>
+    <p><b>Descripción:</b> Linda manga de flores.</p>
+    <img src="https://i.imgur.com/gumc4gW.jpeg" alt="Tatuajes">
+  </div>
+
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p><b>Precio:</b> $4700</p>
+    <p><b>Descripción:</b> Diseño de una flor de loto grande como ven en la foto.</p>
+    <img src="https://i.imgur.com/DqJSJCz.jpeg" alt="Tatuajes">
+  </div>
+  <!--Actualización de codigo 14/4/24-->
+  
+  <div class="tattoo Dos carbela">
+    <h3>Tatuajes Dos carabelas</h3>
+    <p>Precio: $3500</p>
+    <p>Descripción:Dos carabelas hermosas tupidas , de coradas con flotes de colores.</p>
+    <img src="https://i.imgur.com/rssCRSp.jpeg" alt="Tatuajes">
+  </div>
+   
+  <div class="tattoo Dos girasoles">
+    <h3>Tatuajes Dos girasoles</h3>
+    <p><b>Precio:</b> $2500</p>
+    <p><b>Descripción: </b>Dos girasoles bien lindos degradados con tecnica de puntillismo y en el medio lleva una frase.</p>
+    <img src="https://i.imgur.com/6BXCFxT.jpeg  " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes luna </h3>
+    <p>Precio: $2500</p>
+    <p>Descripción:Luna con flores y plumas con colores .</p>
+    <img src=" https://i.imgur.com/4reSnTf.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes arbol</h3>
+    <p>Precio: $1500</p>
+    <p>Descripción:Un arbol con estilo geometricos hermoso.</p>
+    <img src=" https://i.imgur.com/FGkoB0S.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de manga </h3>
+    <p>Precio: $5500</p>
+    <p>Descripción:Manga con variedades de flores y rosas .</p>
+    <img src=" https://i.imgur.com/Ykj4kug.jpeg " alt="Tatuajes">
+  </div>
+   
+  <div class="tattoo">
+    <h3>Tatuajes de manga</h3>
+    <p>Precio: $6000</p>
+    <p>Descripción:Manga con 2 flor de loto ,2 mariposas y 1 reloj de bolcillo  .</p>
+    <img src=" https://i.imgur.com/pBLxvha.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes Maoris de pierna</h3>
+    <p>Precio: $7500</p>
+    <p>Descripción:Hermosos diseño de maoris con 1 carabela y par de magdala.</p>
+    <img src=" https://i.imgur.com/cLtbC4L.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de manga</h3>
+    <p>Precio: $10 000</p>
+    <p>Descripción:Manga de brazo completo de una catrina con flores y carabela y belas.</p>
+    <img src=" https://i.imgur.com/Im56gzE.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de cruz</h3>
+    <p>Precio: $1500</p>
+    <p>Descripción:Hermosa cruz con flores.</p>
+    <img src=" https://i.imgur.com/Ss3vWqU.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes rosa</h3>
+    <p>Precio: $1500</p>
+    <p>Descripción:Tatuaje para la espalda con una frase .</p>
+    <img src=" https://i.imgur.com/rkX6bZz.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes lazo </h3>
+    <p>Precio: $3500</p>
+    <p>Descripción:Lazo para pierna con plumas.</p>
+    <img src=" https://i.imgur.com/rGJETQC.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para pirnas </h3>
+    <p>Precio: $3700</p>
+    <p>Descripción:Diseño para pierna de un atardecer en la playa.</p>
+    <img src=" https://i.imgur.com/79k7Yys.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para pierna con frase </h3>
+    <p>Precio: $4600</p>
+    <p>Descripción:Diseño de frase para la pierna.</p>
+    <img src=" https://i.imgur.com/n0BlWw1.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes Rosa </h3>
+    <p>Precio: $3000</p>
+    <p>Descripción:Hermosa rosa tupida en negro .</p>
+    <img src="https://i.imgur.com/JjUrLX2.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes luna con una hermosa mujer </h3>
+    <p>Precio: $2700</p>
+    <p>Descripción: Diseño de mujer aguantando a la luna .</p>
+    <img src=" https://i.imgur.com/waH92E4.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes rostro griego </h3>
+    <p>Precio: $5200</p>
+    <p>Descripción:Diseño griego decorado con letras modernas.</p>
+    <img src=" https://i.imgur.com/Y6c9YZc.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes ave fenix </h3>
+    <p>Precio: $6400</p>
+    <p>Descripción:Diseño de ave fenix hermoso.</p>
+    <img src=" https://i.imgur.com/UP6rrJz.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de frase para la pierna completa</h3>
+    <p>Precio: $5600</p>
+    <p>Descripción:Diseño de frase para la piernas con hermosas letras.</p>
+    <img src=" https://i.imgur.com/DCt6vhw.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta</h3>
+    <p>Precio: $7000</p>
+    <p>Descripción:Manga con rostro femenino con girasol ,flores y mariposas.</p>
+    <img src=" https://i.imgur.com/hnGiVvc.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes rosa </h3>
+    <p>Precio: $1700</p>
+    <p>Descripción:Rosa con degradacion y circulos estilo geometrico.</p>
+    <img src=" https://i.imgur.com/pxp6cC6.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para espalda</h3>
+    <p>Precio: $4200</p>
+    <p>Descripción:diseño de varias flores con rosa para la espalda.</p>
+    <img src=" https://i.imgur.com/IZn49FT.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta </h3>
+    <p>Precio: $5500</p>
+    <p>Descripción:Diseño para brazo de un bosque con lobo telleno.</p>
+    <img src=" https://i.imgur.com/bnYOh1N.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga </h3>
+    <p>Precio: $6600</p>
+    <p>Descripción:Manga de flores de loto.</p>
+    <img src=" https://i.imgur.com/c0kkST1.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes rostro </h3>
+    <p>Precio: $7500</p>
+    <p>Descripción:Rostro femenino decorado con flores y rosa.</p>
+    <img src=" https://i.imgur.com/KleVG7K.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para muslo </h3>
+    <p>Precio: $ 8000</p>
+    <p>Descripción:Reloj de bolcillo antiguo rodeado de rosas con flores.</p>
+    <img src=" https://i.imgur.com/8Huci4e.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para muslo </h3>
+    <p>Precio: $4200</p>
+    <p>Descripción:Ramillete de rosas con flores.</p>
+    <img src=" https://i.imgur.com/zkdqKGj.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $10500  </p>
+    <p>Descripción:Tattoo de manga maoris             .</p>
+    <img src="https://i.imgur.com/r7tF1bB.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 10500      </p>
+    <p>Descripción: Tattoo de manga maoris           .</p>
+    <img src="https://i.imgur.com/Br7zRcm.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 10500      </p>
+    <p>Descripción: Tattoo de manga maoris           .</p>
+    <img src=" https://i.imgur.com/fuiNYpJ.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 11000      </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src="https://i.imgur.com/y8dDz1C.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 11000      </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src="https://i.imgur.com/bUlfaVp.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 11000      </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src="https://i.imgur.com/hIQ0Zdw.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 10000      </p>
+    <p>Descripción:Tattoo de manga maoris.</p>
+    <img src="https://i.imgur.com/Tgfs4HR.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $  11000     </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src=" https://i.imgur.com/Rid0KN5.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 11600      </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src="https://i.imgur.com/cpzBriN.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 10500      </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src=" https://i.imgur.com/v1NjTJL.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 11600     </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src=" https://i.imgur.com/8TnZGg3.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 11600      </p>
+    <p>Descripción:  Tattoo de manga maoris          .</p>
+    <img src="https://i.imgur.com/izi1SOF.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo</h3>
+    <p>Precio: $ 11000     </p>
+    <p>Descripción: Tattoo de manga con una carabela con dos magdalas y rosas .            .</p>
+    <img src="https://i.imgur.com/KtdmK5y.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 6500     </p>
+    <p>Descripción: Un tattoo con diseño japomes irezumi.          .</p>
+    <img src="https://i.imgur.com/ozZsimm.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 6500      </p>
+    <p>Descripción:Tattoo tradicional japones con carpa y cereza tradicional .           .</p>
+    <img src="https://i.imgur.com/dx9lNgk.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 6500      </p>
+    <p>Descripción:Tattoo tradicional de 2 grullas coronadad rojas con cerezo tradicional.          .</p>
+    <img src=" https://i.imgur.com/nNXEkAF.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 6500      </p>
+    <p>Descripción:Diseños de cereza tradicional.          .</p>
+    <img src="https://i.imgur.com/2udDmef.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo </h3>
+    <p>Precio: $ 11600      </p>
+    <p>Descripción: Tattoo ondulado retro tradicional japones .          .</p>
+    <img src="https://i.imgur.com/IdQ8Y9v.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 6500     </p>
+    <p>Descripción:Tattoo tradicinal japonés sakura .            .</p>
+    <img src="https://i.imgur.com/P4aWNMq.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para la pierna </h3>
+    <p>Precio: $ 8000     </p>
+    <p>Descripción:Tattoo con dos carabela con flores .         .</p>
+    <img src="https://i.imgur.com/XpKB40v.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes</h3>
+    <p>Precio: $ 11800      </p>
+    <p>Descripción:Tattoo de un diseño con un colibri entre un ramo de flores hawaiana y rosas .            .</p>
+    <img src="https://i.imgur.com/eojXamh.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 7600     </p>
+    <p>Descripción:Tattoo tradicional eternal vine japonesa .         .</p>
+    <img src=" https://i.imgur.com/7dIEgtf.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 7600     </p>
+    <p>Descripción: Diseño tradicionla japones .         .</p>
+    <img src="https://i.imgur.com/IYvoPdI.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el antebrazo </h3>
+    <p>Precio: $ 7000    </p>
+    <p>Descripción: Diseños de cerosos ondulados traficional japones .          .</p>
+    <img src="https://i.imgur.com/h3QFMWY.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el hombro </h3>
+    <p>Precio: $ 7800     </p>
+    <p>Descripción: Tattoo de reloj antiguo con su engranaje .           .</p>
+    <img src="https://i.imgur.com/dk0aRWZ.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el hombro </h3>
+    <p>Precio: $ 4500      </p>
+    <p>Descripción: Tattoo de reloj            .</p>
+    <img src="https://i.imgur.com/yTySipo.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el brazo o pierna </h3>
+    <p>Precio: $ 5000     </p>
+    <p>Descripción: Tattoo de diseño de girasoles hermosos.           .</p>
+    <img src="https://i.imgur.com/miPOj49.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el hombro </h3>
+    <p>Precio: $ 3500      </p>
+    <p>Descripción: Rosas con colgantes .           .</p>
+    <img src="https://i.imgur.com/1HaEmQ9.jpeg" alt="Tatuajes">
+  </div>
+  
+    <div class="tattoo">
+    <h3>Tatuajes para el brazo </h3>
+    <p>Precio: $ 5500      </p>
+    <p>Descripción:Diseño de ramillete de flores .            .</p>
+    <img src="https://i.imgur.com/0IXNWVE.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes pars el pie </h3>
+    <p>Precio: $ 3500     </p>
+    <p>Descripción: Diseño de flores de lirio .          .</p>
+    <img src=" https://i.imgur.com/qbrdojQ.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para el pie </h3>
+    <p>Precio: $  3500     </p>
+    <p>Descripción: Diseño de flores .           .</p>
+    <img src="https://i.imgur.com/LqYNVmu.jpeg" alt="Tatuajes">
+  </div>
+  
+  
+  <div class="tattoo">
+    <h3>Tatuajes para la pierna </h3>
+    <p>Precio: $ 6000      </p>
+    <p>Descripción: Diseño de tattoo de una rosa con flores .          .</p>
+    <img src="https://i.imgur.com/CLOrpBx.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para la pierna </h3>
+    <p>Precio: $ 6700      </p>
+    <p>Descripción: Diseño de tattoo de rosa con flores y flor de lirio .           .</p>
+    <img src="https://i.imgur.com/zHBY7Oy.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para pierna y brazo</h3>
+    <p>Precio: $ 7500      </p>
+    <p>Descripción:Diseño de juego de ajedres  .</p>
+    <img src="https://i.imgur.com/1kqMZLl.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de arbol </h3>
+    <p>Precio: $  4500     </p>
+    <p>Descripción: Diseño de el arbol del renacer .</p>
+    <img src="https://i.imgur.com/oUVUozf.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de reloj </h3>
+    <p>Precio: $ 3200     </p>
+    <p>Descripción: Diseño de reloj.</p>
+    <img src="https://i.imgur.com/NePskWU.jpeg"Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de manga mecanica </h3>
+    <p>Precio: $ 11600  </p>
+    <p>Descripción: Diseño mecanico .</p>
+    <img src="https://i.imgur.com/gE6KXXp.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de manga mecanica </h3>
+    <p>Precio: $ 12500 </p>
+    <p>Descripción: Diseño mecanico .</p>
+    <img src="https://i.imgur.com/crLWQke.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de manga </h3>
+    <p>Precio: $ 10700      </p>
+    <p>Descripción:Diseño manga  mecanica  .</p>
+    <img src="https://i.imgur.com/IbV4flG.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta  </h3>
+    <p>Precio: $ 7400     </p>
+    <p>Descripción: Diseño de engranes para manga corta mecanica .</p>
+    <img src="https://i.imgur.com/c20sv2A.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta</h3>
+    <p>Precio: $ 8600    </p>
+    <p>Descripción:  Diseño de engranes para manga corta mecanica           .</p>
+    <img src="https://i.imgur.com/4GEWBju.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta</h3>
+    <p>Precio: $   8600    </p>
+    <p>Descripción:Diseño de engranes para manga corta mecanica .</p>
+    <img src=" https://i.imgur.com/HkhGsj7.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta</h3>
+    <p>Precio: $ 9000      </p>
+    <p>Descripción: Diseño  mecanico con reloj , cadena y engranes muy buena .</p>
+    <img src="https://i.imgur.com/xWt2upo.jpeg " alt="Tatuajes">
+  </div>
+  
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta</h3>
+    <p>Precio: $ 8500      </p>
+    <p>Descripción:   Diseño de engranes para manga corta mecanica          .</p>
+    <img src="https://i.imgur.com/Vm2QusH.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes mecanico para la espalda </h3>
+    <p>Precio: $  12000     </p>
+    <p>Descripción:Diseño de tattoo mecanico para la espalda  .</p>
+    <img src=" https://i.imgur.com/wk982aD.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de reloj con diseño mecanico </h3>
+    <p>Precio: $ 11000     </p>
+    <p>Descripción:Diseño de reloj con decorado de engranes  .</p>
+    <img src="https://i.imgur.com/Ylr3h3A.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes mecanico </h3>
+    <p>Precio: $   7500    </p>
+    <p>Descripción: Diseño mecanico  .</p>
+    <img src=" https://i.imgur.com/YXSACvs.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para hombro </h3>
+    <p>Precio: $  7500    </p>
+    <p>Descripción:Diseño de engranes para manga corta mecanica .</p>
+    <img src=" https://i.imgur.com/NkOAysE.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para hombro </h3>
+    <p>Precio: $  5700     </p>
+    <p>Descripción:Diseño de engranes para manga corta mecanica .</p>
+    <img src="https://i.imgur.com/NR1nljO.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes manga corta </h3>
+    <p>Precio: $ 6400      </p>
+    <p>Descripción:Diseño de engranes para manga corta mecanica .</p>
+    <img src=" https://i.imgur.com/eaEjWqq.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuaje de manga </h3>
+    <p>Precio: $  13000     </p>
+    <p>Descripción: Diseño de un robot tipo mecanico .</p>
+    <img src=" https://i.imgur.com/48UzsMI.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para muslo </h3>
+    <p>Precio: $ 15000      </p>
+    <p>Descripción: Hermoso diseño de un dragon con flores  .</p>
+    <img src="https://i.imgur.com/0n9qnTU.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de carabela</h3>
+    <p>Precio: $   7000    </p>
+    <p>Descripción: Craneo con flores .         .</p>
+    <img src="https://i.imgur.com/SWcjpHa.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de carabela</h3>
+    <p>Precio: $  7000     </p>
+    <p>Descripción:  Craneo           .</p>
+    <img src="https://i.imgur.com/wUsJvGA.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de carabela</h3>
+    <p>Precio: $  8500   </p>
+    <p>Descripción: Diseño de un bitral q desde el medio sale un craneo          .</p>
+    <img src="https://i.imgur.com/DS1HpqU.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de carabela</h3>
+    <p>Precio: $ 10000  </p>
+    <p>Descripción:   Diseño de un craneo con una guadaña .         .</p>
+    <img src="https://i.imgur.com/rapfEEf.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de carabela</h3>
+    <p>Precio: $ 10500     </p>
+    <p>Descripción: Diseño de un craneo con hermoso significado sobre el tiempo.          .</p>
+    <img src=" https://i.imgur.com/vY22p82.jpeg " alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de frase </h3>
+    <p>Precio: $6500    </p>
+    <p>Descripción:Diseño de frase con letras goticas   .</p>
+    <img src="https://i.imgur.com/lEG2Pap.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de manga  </h3>
+    <p>Precio: $ 112000     </p>
+    <p>Descripcion:  Diseño de manga de bugs bunny.</p>
+    <img src="https://i.imgur.com/ZTwj19E.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de manga </h3>
+    <p>Precio: $  12000    </p>
+    <p>Descripción: Diseño para manga de Mickey Mouse         .</p>
+    <img src="https://i.imgur.com/ItZpRlN.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de careta japonesa</h3>
+    <p>Precio: $  7500     </p>
+    <p>Descripción:Hermoso diseño de careta japonesa para los amantes a los tattoo tradicionale. .</p>
+    <img src="https://i.imgur.com/KTdMLWF.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de Anubis  </h3>
+    <p>Precio: $ 9000    </p>
+    <p>Descripción:  Diseño de Anubis el rey de los muertos          .</p>
+    <img src="https://i.imgur.com/qwscw4u.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes para pierna </h3>
+    <p>Precio: $   10000    </p>
+    <p>Descripción: Diseño de tigres de corado con hojas           .</p>
+    <img src="https://i.imgur.com/lcSbNxo.jpeg" alt="Tatuajes">
+  </div>
+  
+  
+  <div class="tattoo">
+    <h3>Tatuajes de Catrina</h3>
+    <p>Precio: $  10000     </p>
+    <p>Descripción:Hermoso diseño de una Catrina .</p>
+    <img src="https://i.imgur.com/So79YtQ.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de Chica  </h3>
+    <p>Precio: $ 11000   </p>
+    <p>Descripción: Diseño de una chica       .</p>
+    <img src="https://i.imgur.com/3vnJuyC.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div class="tattoo">
+    <h3>Tatuajes de Chica </h3>
+    <p>Precio: $ 11700     </p>
+    <p>Descripción: Hermoso diseño de una chica  con carta de poker   .</p>
+    <img src="https://i.imgur.com/Aa4Octx.jpeg" alt="Tatuajes">
+  </div>
+  
+  <div id="mensajeEmergente"></div>
+  
+</div>
+    <footer>
+    <p>Teléfono: <a href="https://wa.me/5355549887">+53 55549887</a></p>
+    <p>Canal de WhatsApp: <a href="https://whatsapp.com/channel/0029VaRIBbL2P59sOSPNbg3G">Enlace a tu canal</a></p>
+    <p><a href="https://api.whatsapp.com/send?phone=5355549887">Enviar mensaje por WhatsApp</a></p>
+</footer>
+    <script>
+    // Función para mostrar un mensaje emergente
+    function mostrarMensaje(mensaje) {
+      const mensajeEmergente = document.getElementById('mensajeEmergente');
+      mensajeEmergente.textContent = mensaje;
+      mensajeEmergente.style.display = 'block';
+    }
+
+    // Función para enviar un mensaje de reserva a WhatsApp
+    function reservarTurno(nombreTatuaje) {
+      const mensajeReserva = "Hola, me gustaría reservar un turno para hacerme el tatuaje '" + nombreTatuaje + "'. ¿Podrías ayudarme con eso?";
+      const urlWhatsApp = "https://wa.me/5355549887/?text=" + encodeURIComponent(mensajeReserva);
+      window.open(urlWhatsApp, '_blank');
+    }
+    // Función buscar tatuajes
+  function buscarTatuajes() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toUpperCase();
+    const tattoos = document.querySelectorAll('.tattoo');
+
+    tattoos.forEach(tattoo => {
+      const titulo = tattoo.querySelector('h3');
+      const precioTexto = tattoo.querySelector('p:nth-child(2)').textContent;
+      const descripcion = tattoo.querySelector('p:nth-child(3)');
+      const texto = titulo.textContent.toUpperCase() + descripcion.textContent.toUpperCase();
+
+      // Convertir el precio a un número o a un rango de números si hay un guion
+      let precios = [];
+      if (precioTexto.includes('-')) {
+        precios = precioTexto.split('-').map(p => parseInt(p.trim()));
+      } else {
+        precios = [parseInt(precioTexto)];
+      }
+
+      // Comprobar si alguno de los precios coincide con el filtro
+      let precioCoincide = false;
+      precios.forEach(precio => {
+        if (precio.toString().indexOf(filter) > -1) {
+          precioCoincide = true;
+        }
+      });
+
+      if (texto.indexOf(filter) > -1 || precioCoincide) {
+        tattoo.style.display = '';
+      } else {
+        tattoo.style.display = 'none';
+      }
+    });
+  }
+  </script> 
+ </body>
+</html>
