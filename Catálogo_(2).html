@@ -1035,8 +1035,7 @@
     <p>Teléfono: <a href="https://wa.me/5355549887">+53 55549887</a></p>
     <p>Canal de WhatsApp: <a href="https://whatsapp.com/channel/0029VaRIBbL2P59sOSPNbg3G">Enlace a tu canal</a></p>
     <p><a href="https://api.whatsapp.com/send?phone=5355549887">Enviar mensaje por WhatsApp</a></p>
-</footer>
-    <script>
+    </footer>
       <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
@@ -1060,7 +1059,8 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
       </script>
-      // Función para mostrar un mensaje emergente
+     <script>
+  // Función para mostrar un mensaje emergente
     function mostrarMensaje(mensaje) {
       const mensajeEmergente = document.getElementById('mensajeEmergente');
       mensajeEmergente.textContent = mensaje;
