@@ -1,0 +1,315 @@
+<html><head><base href="." /><title>WebMessage App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    background: #f0f2f5;
+  }
+
+  .app-container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .sidebar {
+    width: 300px;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-profile {
+    padding: 15px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .conversation-list {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .conversation-item {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .conversation-item:hover {
+    background: #f5f5f5;
+  }
+
+  .chat-header {
+    padding: 15px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #e5ddd5;
+  }
+
+  .message {
+    margin: 10px 0;
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .message.sent {
+    background: #dcf8c6;
+    margin-left: auto;
+  }
+
+  .message.received {
+    background: white;
+  }
+
+  .chat-input {
+    padding: 15px;
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    outline: none;
+  }
+
+  button {
+    padding: 8px 15px;
+    background: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #0073e6;
+  }
+
+  .new-chat-btn {
+    margin: 15px;
+  }
+
+  .typing-indicator {
+    padding: 10px;
+    color: #666;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <div class="sidebar">
+    <div class="user-profile">
+      <h3>Mi Perfil</h3>
+      <p id="userEmail">usuario@email.com</p>
+    </div>
+    <button class="new-chat-btn">Nueva Conversación</button>
+    <div class="conversation-list">
+      <div class="conversation-item">
+        <h4>Juan Pérez</h4>
+        <p>Último mensaje...</p>
+      </div>
+      <div class="conversation-item">
+        <h4>María García</h4>
+        <p>Último mensaje...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="chat-header">
+      <h3>Chat con Juan Pérez</h3>
+    </div>
+    <div class="chat-messages">
+      <div class="message received">
+        ¡Hola! ¿Cómo estás?
+      </div>
+      <div class="message sent">
+        ¡Muy bien! ¿Y tú?
+      </div>
+    </div>
+    <div class="typing-indicator" id="typingIndicator"></div>
+    <div class="chat-input">
+      <input type="text" placeholder="Escribe un mensaje..." id="messageInput">
+      <button id="sendButton">Enviar</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
+  import { getDatabase, ref, push, onValue, set } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js';
+  import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js';
+
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiY04zwI9qrD3QZDUIl_PXWT66nVyiQZU",
+    authDomain: "webmessage-app-demo.firebaseapp.com",
+    databaseURL: "https://webmessage-app-demo-default-rtdb.firebaseio.com",
+    projectId: "webmessage-app-demo",
+    storageBucket: "webmessage-app-demo.appspot.com",
+    messagingSenderId: "123456789012",
+    appId: "1:123456789012:web:abc123def456ghi789"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const auth = getAuth(app);
+  
+  let currentUserId = null;
+  let chatId = null;
+
+  async function initializeChat() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      chatId = urlParams.get('chat') || generateUniqueId();
+      
+      if (!urlParams.has('chat')) {
+        window.history.replaceState({}, '', `?chat=${chatId}`);
+      }
+
+      const userCredential = await signInAnonymously(auth);
+      currentUserId = userCredential.user.uid;
+      document.getElementById('userEmail').textContent = `Usuario: ${currentUserId.slice(0,8)}`;
+      
+      listenToMessages();
+      
+      console.log('Chat initialized successfully');
+    } catch (error) {
+      console.error('Error initializing chat:', error);
+    }
+  }
+
+  let typingTimeout;
+  const messageInput = document.getElementById('messageInput');
+  const sendButton = document.getElementById('sendButton');
+  const typingIndicator = document.getElementById('typingIndicator');
+  const chatMessages = document.querySelector('.chat-messages');
+
+  function addMessage(message, senderId) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    messageDiv.classList.add(senderId === currentUserId ? 'sent' : 'received');
+    messageDiv.textContent = message;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function showTypingIndicator() {
+    if (!chatId || !currentUserId) return;
+    
+    const typingRef = ref(db, `chats/${chatId}/typing/${currentUserId}`);
+    set(typingRef, true);
+    
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+      set(typingRef, false);
+    }, 1000);
+  }
+
+  function generateUniqueId() {
+    return Math.random().toString(36).substring(2) + Date.now().toString(36);
+  }
+
+  function listenToMessages() {
+    if (!chatId) return;
+    
+    const messagesRef = ref(db, `chats/${chatId}/messages`);
+    const typingRef = ref(db, `chats/${chatId}/typing`);
+
+    onValue(messagesRef, (snapshot) => {
+      const data = snapshot.val();
+      chatMessages.innerHTML = ''; 
+      if (data) {
+        Object.entries(data).forEach(([key, msg]) => {
+          addMessage(msg.text, msg.userId);
+        });
+      }
+    });
+
+    onValue(typingRef, (snapshot) => {
+      const typingUsers = snapshot.val();
+      if (typingUsers) {
+        const othersTyping = Object.entries(typingUsers)
+          .filter(([uid, isTyping]) => uid !== currentUserId && isTyping);
+        
+        typingIndicator.textContent = othersTyping.length > 0 ? 'Alguien está escribiendo...' : '';
+      }
+    });
+  }
+
+  async function sendMessage(text) {
+    if (!text.trim() || !chatId || !currentUserId) return;
+    
+    try {
+      const messagesRef = ref(db, `chats/${chatId}/messages`);
+      await push(messagesRef, {
+        text: text,
+        timestamp: Date.now(),
+        userId: currentUserId
+      });
+      console.log('Message sent successfully');
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  }
+
+  messageInput.addEventListener('input', showTypingIndicator);
+
+  sendButton.addEventListener('click', () => {
+    const message = messageInput.value.trim();
+    if (message) {
+      sendMessage(message);
+      messageInput.value = '';
+    }
+  });
+
+  messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendButton.click();
+    }
+  });
+
+  document.querySelector('.new-chat-btn').addEventListener('click', () => {
+    const newChatId = generateUniqueId();
+    const link = `${window.location.origin}${window.location.pathname}?chat=${newChatId}`;
+    alert(`Comparte este enlace: ${link}`);
+  });
+
+  if ('Notification' in window) {
+    Notification.requestPermission();
+  }
+
+  initializeChat().catch(console.error);
+</script>
+</body>
+</html>
