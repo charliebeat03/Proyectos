@@ -2,13 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Chat WhatsApp Style</title>
-    <link href="https://cdn.jsdelivr.net/npm/@emoji-mart/css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emoji-mart/data"></script>
-    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+    <title>Chat Simple</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
             background: #f0f2f5;
@@ -18,8 +15,8 @@
             max-width: 600px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             height: 95vh;
             display: flex;
             flex-direction: column;
@@ -28,93 +25,75 @@
         .messages {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
         .message {
-            max-width: 80%;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .user-message {
-            align-self: flex-end;
-            flex-direction: row-reverse;
-        }
-        
-        .other-message {
-            align-self: flex-start;
-        }
-        
-        .bubble {
-            padding: 12px 18px;
-            border-radius: 20px;
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
             position: relative;
             word-break: break-word;
         }
         
-        .user-bubble {
-            background: #0084ff;
-            color: white;
-            border-bottom-right-radius: 5px;
+        .my-message {
+            align-self: flex-end;
+            background: #DCF8C6;
+            border-bottom-right-radius: 3px;
         }
         
-        .other-bubble {
-            background: #e9ecef;
-            border-bottom-left-radius: 5px;
-        }
-        
-        .timestamp {
-            font-size: 0.75em;
-            color: #666;
-            margin-top: 4px;
+        .other-message {
+            align-self: flex-start;
+            background: #E8E8E8;
+            border-bottom-left-radius: 3px;
         }
         
         .input-area {
-            display: flex;
             padding: 15px;
             border-top: 1px solid #ddd;
+            display: flex;
             gap: 10px;
         }
         
         input {
             flex: 1;
-            padding: 12px 20px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 25px;
-            font-size: 16px;
+            border-radius: 20px;
             outline: none;
         }
         
         button {
-            background: #0084ff;
+            background: #25D366;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: 0.3s;
         }
         
-        button:hover {
-            background: #0066cc;
+        .error {
+            color: red;
+            text-align: center;
+            padding: 5px;
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
         <div class="messages" id="messages"></div>
+        <div class="error" id="errorMsg">⚠️ Error enviando mensaje</div>
         <div class="input-area">
-            <input type="text" id="messageInput" placeholder="Escribe un mensaje..." 
-                   onkeypress="if(event.key === 'Enter') sendMessage()">
+            <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
             <button onclick="sendMessage()">Enviar</button>
         </div>
     </div>
 
-    <!-- Firebase v8 -->
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
@@ -129,16 +108,18 @@
             measurementId: "G-JSF25M3Z6J"
         };
 
+        // Inicializar Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Función de envío con verificación
+        // Función de envío mejorada
         async function sendMessage() {
             const input = document.getElementById('messageInput');
+            const errorMsg = document.getElementById('errorMsg');
             const message = input.value.trim();
             
             if(!message) {
-                alert('¡Escribe un mensaje primero!');
+                input.focus();
                 return;
             }
             
@@ -146,44 +127,43 @@
                 await db.collection('messages').add({
                     text: message,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                    sender: 'yo' // Cambiar por identificador único en producción
+                    sender: 'yo' // Identificador fijo
                 });
                 input.value = '';
+                errorMsg.style.display = 'none';
             } catch (error) {
                 console.error('Error:', error);
-                alert('Error al enviar. Verifica tu conexión.');
+                errorMsg.style.display = 'block';
+                setTimeout(() => errorMsg.style.display = 'none', 3000);
             }
         }
 
-        // Escucha en tiempo real con formato
+        // Escuchar mensajes
         db.collection('messages')
-            .orderBy('timestamp')
-            .onSnapshot(snapshot => {
-                const messagesDiv = document.getElementById('messages');
-                messagesDiv.innerHTML = '';
-                
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const isUser = data.sender === 'yo';
-                    
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = `message ${isUser ? 'user-message' : 'other-message'}`;
-                    
-                    messageDiv.innerHTML = `
-                        <div class="bubble ${isUser ? 'user-bubble' : 'other-bubble'}">
-                            ${data.text}
-                            <div class="timestamp">
-                                ${new Date(data.timestamp?.toDate()).toLocaleTimeString('es-ES', {hour: '2-digit', minute: '2-digit'})}
-                            </div>
-                        </div>
-                    `;
-                    
-                    messagesDiv.appendChild(messageDiv);
-                });
-                
-                // Scroll automático al último mensaje
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            });
+          .orderBy('timestamp')
+          .onSnapshot(snapshot => {
+              const messagesDiv = document.getElementById('messages');
+              messagesDiv.innerHTML = '';
+              
+              snapshot.forEach(doc => {
+                  const data = doc.data();
+                  const messageClass = data.sender === 'yo' ? 'my-message' : 'other-message';
+                  
+                  const messageElement = document.createElement('div');
+                  messageElement.className = `message ${messageClass}`;
+                  messageElement.textContent = data.text;
+                  
+                  messagesDiv.appendChild(messageElement);
+              });
+              
+              // Scroll automático
+              messagesDiv.scrollTop = messagesDiv.scrollHeight;
+          });
+
+        // Verificación de Firestore
+        db.collection('messages').get().catch(error => {
+            alert(`¡Error de conexión! Verifica:\n1. Tu conexión a internet\n2. Reglas de Firestore (permitir lectura/escritura)`);
+        });
     </script>
 </body>
 </html>
