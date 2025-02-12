@@ -121,6 +121,46 @@
             display: none;
         }
         
+        /* Nuevos estilos para audio */
+        .audio-message {
+            background: #f1f3f4 !important;
+            padding: 10px 15px !important;
+            min-width: 200px;
+        }
+        
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .audio-duration {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .record-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1.5em;
+        }
+        
+        .recording-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            color: #e74c3c;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -135,6 +175,11 @@
         
         <div class="input-area">
             <div class="emoji-btn" onclick="toggleEmojiPicker()">😊</div>
+            <button class="record-btn" id="recordBtn" title="Grabar audio">🎤</button>
+            <div class="recording-indicator" id="recordingIndicator">
+                <div style="width: 12px; height: 12px; background: #e74c3c; border-radius: 50%;"></div>
+                <span>Grabando...</span>
+            </div>
             <input type="text" id="messageInput" placeholder="Escribe un mensaje..." 
                    onkeypress="handleEnter(event)">
             <button onclick="sendMessage()">Enviar</button>
@@ -146,9 +191,10 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <script>
-        // Configuración Firebase
+        // Configuración Firebase con tus credenciales
         const firebaseConfig = {
             apiKey: "AIzaSyC2uxNfdKnlsZ-eh0AKdI5WDrPYtF94njw",
             authDomain: "whatschism.firebaseapp.com",
@@ -161,7 +207,13 @@
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const storage = firebase.storage();
+        const storageRef = storage.ref();
+        
         let emojiPicker = null;
+        let mediaRecorder;
+        let audioChunks = [];
+        let isRecording = false;
 
         // Inicializar selector de emojis
         function initEmojiPicker() {
@@ -179,28 +231,71 @@
             document.getElementById('emoji-picker').appendChild(emojiPicker);
         }
 
-        // Mostrar/ocultar emojis
+        // Grabación de audio
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                
+                mediaRecorder.ondataavailable = (e) => {
+                    audioChunks.push(e.data);
+                };
+                
+                mediaRecorder.onstop = async () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    await uploadAudio(audioBlob);
+                    audioChunks = [];
+                };
+                
+                mediaRecorder.start();
+                isRecording = true;
+                document.getElementById('recordingIndicator').style.display = 'flex';
+            } catch (err) {
+                alert('Error al acceder al micrófono');
+            }
+        }
+
+        async function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                isRecording = false;
+                document.getElementById('recordingIndicator').style.display = 'none';
+            }
+        }
+
+        async function uploadAudio(audioBlob) {
+            const timestamp = Date.now();
+            const audioRef = storageRef.child(`audios/audio_${timestamp}.webm`);
+            
+            await audioRef.put(audioBlob);
+            const audioUrl = await audioRef.getDownloadURL();
+            
+            await db.collection('messages').add({
+                type: 'audio',
+                audioUrl: audioUrl,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                sender: 'user1',
+                duration: Math.floor(audioBlob.size / 1200)
+            });
+        }
+
+        // Resto de funciones
         function toggleEmojiPicker() {
             const picker = document.getElementById('emoji-picker');
             picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Comando para limpiar mensajes
         async function clearAllMessages() {
             if(confirm('¿Borrar TODOS los mensajes permanentemente?')) {
                 const messages = await db.collection('messages').get();
                 const batch = db.batch();
                 
-                messages.forEach(doc => {
-                    batch.delete(doc.ref);
-                });
-                
+                messages.forEach(doc => batch.delete(doc.ref));
                 await batch.commit();
                 alert('Todos los mensajes han sido eliminados');
             }
         }
 
-        // Función de envío mejorada
         async function sendMessage() {
             const input = document.getElementById('messageInput');
             const message = input.value.trim();
@@ -215,14 +310,14 @@
                 await db.collection('messages').add({
                     text: message,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                    sender: 'user1'
+                    sender: 'user1',
+                    type: 'text'
                 });
                 input.value = '';
                 document.getElementById('emoji-picker').style.display = 'none';
             }
         }
 
-        // Manejar Enter
         function handleEnter(e) {
             if(e.key === 'Enter') sendMessage();
         }
@@ -238,16 +333,40 @@
                   const data = doc.data();
                   const messageClass = data.sender === 'user1' ? 'my-message' : 'other-message';
                   
-                  messagesDiv.innerHTML += `
-                    <div class="message ${messageClass}">
-                        ${data.text}
-                    </div>
-                  `;
+                  if(data.type === 'audio') {
+                      messagesDiv.innerHTML += `
+                        <div class="message ${messageClass} audio-message">
+                            <div class="audio-player">
+                                <audio controls>
+                                    <source src="${data.audioUrl}" type="audio/webm">
+                                </audio>
+                                <span class="audio-duration">${data.duration}s</span>
+                            </div>
+                        </div>
+                      `;
+                  } else {
+                      messagesDiv.innerHTML += `
+                        <div class="message ${messageClass}">
+                            ${data.text}
+                        </div>
+                      `;
+                  }
               });
               
-              // Scroll al final
               messagesDiv.scrollTop = messagesDiv.scrollHeight;
           });
+
+        // Eventos
+        document.getElementById('recordBtn').addEventListener('mousedown', startRecording);
+        document.getElementById('recordBtn').addEventListener('mouseup', stopRecording);
+        document.getElementById('recordBtn').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startRecording();
+        });
+        document.getElementById('recordBtn').addEventListener('touchend', (e) => {
+            e.preventDefault();
+            stopRecording();
+        });
 
         // Inicialización
         window.onload = () => {
